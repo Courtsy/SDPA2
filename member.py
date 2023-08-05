@@ -5,17 +5,24 @@ class Member:
         self.totalCheckedOutBooks = 0
         self.borrowed_books = []
 
-    def inquire(self, library, ISBN=None, title=None):
+    def inquire(self, library, ISBN=None, title=None, author=None):
         found = False
         books = library.get_books()
         if ISBN:
             for book in books:
                 if book.ISBN == ISBN:
                     print(f"Title: {book.title}, Author: {book.author}, Copies Available: {book.number_of_copies}")
+                    found = True
         elif title:
             for book in books:
                 if book.title == title:
                     print(f"ISBN: {book.ISBN}, Author: {book.author}, Copies Available: {book.number_of_copies}")
+                    found = True
+        elif author:
+            for book in books:
+                if book.author == author:
+                    print(f"ISBN: {book.ISBN}, Title: {book.title}, Copies Available: {book.number_of_copies}")
+                    found = True
         if not found:
             print("The book you're looking for is not available in the library.")
 

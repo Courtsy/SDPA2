@@ -17,6 +17,7 @@ class Library:
 
     def display_books(self):
         # Display available books
+        print("Catalogue:")
         for book in self.books:
             print(f"Title: {book.title}, Author: {book.author}, ISBN: {book.ISBN}, Copies Available: {book.number_of_copies}")
 
