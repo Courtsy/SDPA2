@@ -17,13 +17,16 @@ class Library:
 
     def display_books(self):
         # Display available books
-        print("Catalogue:")
         for book in self.books:
-            print(f"Title: {book.title}, Author: {book.author}, ISBN: {book.ISBN}, Copies Available: {book.number_of_copies}")
+            print(f"Title: {book.title}, "
+                  f"Author: {book.author}, "
+                  f"ISBN: {book.ISBN}, "
+                  f"Copies Available: {book.number_of_copies}")
 
     def process_borrow_request(self, member, ISBN, days):
         # Process borrowing requests from member
         member.borrow(self, ISBN, days)
+
     def process_return_request(self, member, ISBN):
         # Process returning requests and update the catalogue
         member.return_book(self, ISBN)

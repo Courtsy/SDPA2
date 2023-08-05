@@ -66,7 +66,7 @@ class Member:
             self.borrowed_books.remove((book_to_return, days))
             self.totalCheckedOutBooks -= 1
 
-            # Print a success message
+            # Print a message saying the book has been returned along with the receipt
             print(f"You have returned the book with title {book_to_return.title}, {ISBN}. Thank you!")
             print(f"Receipt: {self.name} returned {book_to_return.title}")
         else:

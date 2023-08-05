@@ -1,14 +1,26 @@
+# Importing each class from different files to be called upon in the main file
 from member import Member
 from book import Book
 from library import Library
 
-# Create a library
+# Creating a library by calling the library class
 library = Library()
 
-# Add some books to the library
+# Adding books to the library by creating a catalogue of books to be selected from
+# Follows a format of (ISBN, Book Title, Author Name, Number of copies available)
 books = [
-    Book('1234567890456', 'Book Title 1', 'Author 1', 5),
-    Book('0987654321236', 'Book Title 2', 'Author 2', 3),
+    Book('2943879088763', 'The Great Gatsby', 'F. Scott Fitzgerald', 5),
+    Book('3679904055940', 'To Kill A Mockingbird', 'Harper Lee', 3),
+    Book('5887213375927', 'Jane Eyre', 'Charlotte Bronte', 2),
+    Book('6501436306213', 'Pride and Prejudice', 'Jane Austen', 7),
+    Book('1517401882407', 'The Da Vinci Code', 'Dan Brown', 3),
+    Book('7582354027903', 'Harry Potter and the Chamber of Secrets', 'J. K. Rowling', 8),
+    Book('9404205148924', 'Black Beauty', 'Anna Sewell', 1),
+    Book('4313218235661', 'The Hite Report', 'Shere Hite', 4),
+    Book('9153125301016', 'The Hunger Games', 'Suzanne Collins', 6),
+    Book('2261487960075', 'The Godfather', 'Mario Puzo', 4),
+    Book('8349882841851', 'Gone Girl', 'Gillian Flynn', 2),
+    Book('2695557253203', 'Jaws', 'Peter Benchley', 3),
 ]
 for book in books:
     library.add_book(book)
@@ -34,7 +46,7 @@ while True:
                 break
 
         if current_member:
-         print(f"Welcome, {current_member.name}!")
+            print(f"Welcome, {current_member.name}!")
         else:
             print("Error: Member ID not recognized. Please type a valid member ID.")
 
@@ -70,7 +82,7 @@ while True:
                 # Get the list of available books from the library
                 available_books = library.get_books()
 
-                    # Check if the ISBN matches one of the available books in the catalogue                available_books = library.get_books()
+                # Check if the ISBN matches one of the available books in the catalogue
                 if any(book.ISBN == ISBN for book in available_books):
                     break  # Exit the loop if a matching book is found
                 else:
@@ -81,14 +93,14 @@ while True:
                     days = int(input("Enter the number of days you want to borrow the book for: "))
                     if days <= 0:
                         raise ValueError("Must be a valid number of days")
-                    library.process_borrow_request(member, ISBN, days)
+                    library.process_borrow_request(current_member, ISBN, days)
                     break  # Exit the loop if a valid number of days was entered
                 except ValueError as e:
                     print(e)  # Print the error message and continue to the next iteration of the loop
 
         elif choice == '4':
             ISBN = input("Enter ISBN of the book you want to return: ")
-            library.process_return_request(member, ISBN)
+            library.process_return_request(current_member, ISBN)
         elif choice == '5':
             print(f"Goodbye, {current_member.name}!")
             break  # Break out of the main menu loop to return to member selection
@@ -98,7 +110,5 @@ while True:
         if choice != '1' and choice != '6':
             print("\nCurrent catalogue:")
             library.display_books()
-        else:
+        elif choice not in ['1', '2', '3', '4', '5', '6']:
             print("Invalid choice. Please select option 1,2,3,4,5 or 6")
-
-
