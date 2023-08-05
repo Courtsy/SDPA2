@@ -1,3 +1,18 @@
+"""
+This is the main script for the library system. The necessary classes are imported from their files,
+a library is created and populated with a user interface for the members to interact with. Members are created
+that can access the library and a list of books are added to the library to be interacted with.
+
+Classes:
+    Member:
+        represents a library member
+    Book:
+        represents a book in the library
+    Library:
+        represents the library that contains the books
+
+
+"""
 # Importing each class from different files to be called upon in the main file
 from member import Member
 from book import Book
@@ -23,9 +38,10 @@ books = [
     Book('2695557253203', 'Jaws', 'Peter Benchley', 3),
 ]
 for book in books:
-    library.add_book(book)
+    library.add_book(book) # Adding each book to the library
 
-# Create a member
+# Create a member list for different members that can use the library
+# Follows of a format of (member ID, name)
 members = [
     Member('001', 'John Doe'),
     Member('002', 'Jane Smith'),
@@ -35,6 +51,7 @@ members = [
 ]
 
 while True:
+    # Main loop for the user interface
     # Prompt for member ID
     current_member = None
     while current_member is None:
@@ -46,11 +63,15 @@ while True:
                 break
 
         if current_member:
+            # Success message when a member enters the library
             print(f"Welcome, {current_member.name}!")
+
         else:
+            # Error message if invalid member ID is entered
             print("Error: Member ID not recognized. Please type a valid member ID.")
 
     while True:
+        # Loop for the main menu (user interface)
         print("\nPlease select an option below.")
         print("1. Display available books")
         print("2. Inquire about a book")
@@ -61,9 +82,11 @@ while True:
         choice = input("Select an option: ")
 
         if choice == '1':
+            # Displays the available books in the library
             print("Here are the available books: ")
             library.display_books()
         elif choice == '2':
+            # Allows the user to inquire about a book in the library
             ISBN = input("Enter ISBN (or leave blank): ")
             title = None
             author = None
@@ -74,6 +97,7 @@ while True:
 
             current_member.inquire(library, ISBN=ISBN, title=title, author=author)
         elif choice == '3':
+            # Allows the user to borrow a book from the library
             while True:  # Start a loop that will continue until a valid ISBN is entered
                 ISBN = input("Enter the 13-digit ISBN of the book you want to borrow: ")
                 if len(ISBN) != 13 or not ISBN.isdigit():
@@ -99,16 +123,21 @@ while True:
                     print(e)  # Print the error message and continue to the next iteration of the loop
 
         elif choice == '4':
+            # Allows the user to return a book to the library
             ISBN = input("Enter ISBN of the book you want to return: ")
             library.process_return_request(current_member, ISBN)
         elif choice == '5':
+            # Allows the user to log out of the program
             print(f"Goodbye, {current_member.name}!")
             break  # Break out of the main menu loop to return to member selection
         elif choice == '6':
+            # This option will exit the program and the code will have to be run again
             print("Thanks for visiting the library. Have a great day!")
             exit()
+        else:
+            # Error message shown if an invalid option is selected
+            print("Invalid choice. Please select option 1,2,3,4,5 or 6")
         if choice != '1' and choice != '6':
+            # Display the current catalogue if the user didn't choose to display it or exit the program
             print("\nCurrent catalogue:")
             library.display_books()
-        elif choice not in ['1', '2', '3', '4', '5', '6']:
-            print("Invalid choice. Please select option 1,2,3,4,5 or 6")
