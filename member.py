@@ -37,7 +37,7 @@ class Member:
             self.totalCheckedOutBooks += 1
 
             # Print a success message
-            print(f"You have borrowed one book with title {book_to_borrow.title}, {ISBN} for {days} days. Update the Catalogue accordingly.")
+            print(f"You have borrowed one book with title {book_to_borrow.title}, {ISBN} for {days} days.")
         else:
             # Print an error message
             print("The book you're trying to borrow is not available.")

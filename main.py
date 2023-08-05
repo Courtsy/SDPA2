@@ -30,15 +30,23 @@ while True:
     elif choice == '2':
         ISBN = input("Enter ISBN (or leave blank): ")
         title = input("Enter title (or leave blank): ")
+
         member.inquire(library, ISBN=ISBN, title=title)
     elif choice == '3':
         ISBN = input("Enter ISBN of the book you want to borrow: ")
-        days = int(input("Enter the number of days you want to borrow the book for: "))
-        library.process_borrow_request(member, ISBN, days)
+        while True:  # Start a loop that will continue until a valid number of days is entered
+            try:
+                days = int(input("Enter the number of days you want to borrow the book for: "))
+                if days <= 0:
+                    raise ValueError("Must be a valid number of days")
+                library.process_borrow_request(member, ISBN, days)
+                break  # Exit the loop if a valid number of days was entered
+            except ValueError as e:
+                print(e)  # Print the error message and continue to the next iteration of the loop
     elif choice == '4':
         ISBN = input("Enter ISBN of the book you want to return: ")
         library.process_return_request(member, ISBN)
     elif choice == '5':
         break
     else:
-        print("Invalid choice. Please try again.")
+        print("Invalid choice. Please select option 1,2,3,4 or 5.")
