@@ -11,7 +11,6 @@ Classes:
     Library:
         represents the library that contains the books
 
-
 """
 # Importing each class from different files to be called upon in the main file
 from member import Member
@@ -38,7 +37,7 @@ books = [
     Book('2695557253203', 'Jaws', 'Peter Benchley', 3),
 ]
 for book in books:
-    library.add_book(book) # Adding each book to the library
+    library.add_book(book)  # Adding each book to the library
 
 # Create a member list for different members that can use the library
 # Follows of a format of (member ID, name)
