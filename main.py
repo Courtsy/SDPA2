@@ -1,4 +1,4 @@
-#Thomas Courts - 2344550
+# Thomas Courts - 2344550
 
 """
 This is the main script for the library system. The necessary classes are imported from their files,
