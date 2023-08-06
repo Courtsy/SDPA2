@@ -3,6 +3,8 @@ SDPA Coursework
 
 Part 1 : Object Oriented Programming - Code Design
 
+To run the code simply click run in the main.py file
+
 book.py:
 
 This file contains the Book class that holds everything related to the book in the library. It holds a constructor method __init__ that constructs the necessary attributes for the book objects that include the ISBN, title, author and number of copies that are all necessary for the creation of the library. It also holds another constructor method __str__ that is used to return the string representation of a book. It allows for a convenient way to display the details of a book in a formatted manner.
